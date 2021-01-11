@@ -1,0 +1,85 @@
+name :  Aniket Devarkar
+task :  2
+batch : B20
+*********************************************************************************************
+1)Difference between copy by reference and copy by value ?
+->A)Copy by value
+	i) In a primitive data-type when a variable is assigned a value we can imagine that
+	a box is created in the memory. This box has a sticker attached to it i.e. the 
+	variable name. Inside the box the value assigned to the variable is stored.\
+	
+	primitive datatypes are : - Number, string and Boolean.
+
+     for example : - 
+	var x = 10 , y = 'Aniket' , z = null;
+	//‘x’ contains value 10, ‘y’ contains ‘Aniket’.
+	var a = x; // 
+	var b = y;
+	ii)At this point of time both ‘x’ and ‘a’ contains the value 10.
+ 	Both ‘y’ and ‘b’ contains the value Aniket
+	However, an important thing to understand here is that even though ‘x’ and ‘a’ 
+	as well as ‘y’ and ‘b’ contains the same value they are not connected to each other.
+	It is so because the values are directly copied into the new variables.
+	Changes taking palace in one does not affect the other.
+
+->B)Copy by reference
+	i)In case of a composite data-type the values are not directly copied. 
+	ii)When a non-primitive data-type is assigned a value a box is created with a sticker 
+	of the name of the data-type.
+	iii)However, the values it is assigned is not stored directly in the box.
+	The language itself assigns a different memory location to store the 
+	data. The address of this memory location is stored in the box created.
+	
+	composite Datatype : Object, Array, and Function (which are all types of objects)
+	special data types: Undefined and Null
+
+      for example : -   let user = {name : 'devarkar'}
+			let admin =   user 
+			admin.name = 'Aniket'   // value changed
+			console.log(user.name); // name changed to Aniket
+	This happens because both ‘user’ and ‘admin’ are storing the address of the memory 
+	location. And when one changes the values in the allocated memory it is reflected 
+	in the other as well.
+	We can further elaborate it we can say that; copy by reference is like having two 
+	keys of the same room shared between ‘admin’ and ‘user’. I one of them alters the
+	arrangement of the room the other would experience it ads well.
+   
+
+2) how to copy by value a composite data type(array+object) ?
+->In Copy by value the data which variable hold is passed to another variable .
+ Both the variables refers two different memory locations.
+
+  There are 3 ways to copy by value for composite data types.
+   i) Using the spread (...) operator
+	Spread operator allows an iterable to expand in places where 0+ arguments
+	are expected. It is mostly used in the variable array where there is more than 1 
+	values are expected. 
+	It allows us the privilege to obtain a list of parameters from an array.
+	Using spread will clone your object. Note this will be a shallow copy.
+     for example : -
+	let arr1 = [1,2,3];
+	let arr2 = [...arr];   // copy by value using spread operator.
+	console.log(arr1,arr2);     // prints [1,2,3] [1,2,3] without change in arr1.
+
+  ii) Using the Object.assign() method
+	The Object.assign() method copies all enumerable own properties from one 
+	or more source objects to a target object. 
+	It returns the target object. Note this will be a shallow copy.
+      for example : -
+	let arr1 = [1,2,3]
+	let arr2 = Object.assign([],arr);  //copy by value using Object.assign method.
+	console.log(arr1,arr2)  	   // prints [1,2,3] [1,2,3] without change in arr1.
+
+   iii) Using the JSON.stringify() and JSON.parse() methods
+	The JSON object, available in all modern browsers, has two useful methods
+	to deal with JSON-formatted content: parse and stringify. 
+	JSON.parse() takes a JSON string and transforms it into a JavaScript object.
+	JSON.stringify() takes a JavaScript object and transforms it into a JSON string.
+	Using JSON.parse() and JSON.stringify() for copy performs deep copy .
+
+     for example : -
+	let arr1 = [1,2,3]
+	let arr2 =JSON.parse(JSON.stringify(arr));  //copy by value.
+	console.log(arr1,arr2)  	   // prints [1,2,3] [1,2,3] without change in arr1
+
+ 		
